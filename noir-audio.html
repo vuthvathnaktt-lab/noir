@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NOIR — Sound. Power. Carried.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600&family=Inter:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noir-0:#0a0a0b;
+    --noir-1:#141416;
+    --noir-2:#1d1e21;
+    --ivory:#ece8e0;
+    --ivory-dim:#a8a49b;
+    --copper:#c9863f;
+    --copper-dim:#8a6233;
+    --line:rgba(236,232,224,0.10);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--noir-0);
+    color:var(--ivory);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  .display{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:0.92;
+  }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--copper);
+    font-weight:600;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px;
+    backdrop-filter:blur(10px);
+    background:linear-gradient(to bottom, rgba(10,10,11,0.85), rgba(10,10,11,0));
+    transition:background 0.3s;
+  }
+  .logo{font-family:'Big Shoulders Display'; font-weight:800; font-size:22px; letter-spacing:0.04em;}
+  .logo span{color:var(--copper);}
+  .navlinks{display:flex; gap:36px; font-size:13px; letter-spacing:0.04em;}
+  .navlinks a{opacity:0.75; transition:opacity 0.2s;}
+  .navlinks a:hover{opacity:1;}
+  .navcta{
+    border:1px solid var(--line); padding:9px 20px; border-radius:2px;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    transition:all 0.25s;
+  }
+  .navcta:hover{background:var(--ivory); color:var(--noir-0); border-color:var(--ivory);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    background:
+      radial-gradient(ellipse 70% 50% at 70% 20%, rgba(201,134,63,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 60% at 20% 80%, rgba(40,40,45,0.6), transparent 60%),
+      var(--noir-0);
+    border-bottom:1px solid var(--line);
+    padding-top:90px;
+  }
+  .hero-grain{
+    position:absolute; inset:0; pointer-events:none; opacity:0.5; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    width:100%;
+  }
+  .hero h1{
+    font-size:clamp(56px, 8vw, 104px);
+    margin:14px 0 22px 0;
+  }
+  .hero h1 .accent{color:var(--copper);}
+  .hero p.lede{
+    font-size:17px; line-height:1.6; color:var(--ivory-dim); max-width:440px; margin-bottom:34px;
+  }
+  .hero-ctas{display:flex; gap:16px; align-items:center;}
+  .btn-primary{
+    background:var(--ivory); color:var(--noir-0); padding:15px 30px;
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
+    border-radius:2px; transition:transform 0.25s, box-shadow 0.25s; display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,0.4);}
+  .btn-ghost{
+    font-size:13px; letter-spacing:0.05em; color:var(--ivory-dim);
+    border-bottom:1px solid var(--line); padding-bottom:3px; transition:color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover{color:var(--ivory); border-color:var(--ivory);}
+  .hero-meta{display:flex; gap:32px; margin-top:54px; padding-top:24px; border-top:1px solid var(--line);}
+  .hero-meta div{display:flex; flex-direction:column; gap:4px;}
+  .hero-meta b{font-family:'Big Shoulders Display'; font-size:26px; font-weight:700;}
+  .hero-meta span{font-size:11px; color:var(--ivory-dim); letter-spacing:0.04em;}
+
+  /* ---------- PRODUCT RENDER (CSS photographic, no cartoon) ---------- */
+  .stage{
+    position:relative; height:560px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .stage-floor{
+    position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
+    width:380px; height:60px; border-radius:50%;
+    background:radial-gradient(ellipse, rgba(0,0,0,0.65), transparent 70%);
+    filter:blur(6px);
+  }
+  .case3d{
+    position:relative; width:230px; height:300px;
+  }
+  .case-body{
+    position:absolute; inset:0;
+    border-radius:26px;
+    background:
+      linear-gradient(135deg, #2b2b2e 0%, #161618 38%, #0c0c0d 60%, #232326 100%);
+    box-shadow:
+      inset 0 1px 1px rgba(255,255,255,0.18),
+      inset 0 -30px 50px rgba(0,0,0,0.6),
+      0 40px 70px rgba(0,0,0,0.65),
+      0 4px 10px rgba(0,0,0,0.5);
+    transform:perspective(900px) rotateY(-18deg) rotateX(4deg);
+  }
+  .case-seam{
+    position:absolute; top:48%; left:6%; right:6%; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  }
+  .case-led{
+    position:absolute; bottom:16%; left:50%; transform:translateX(-50%);
+    width:7px; height:7px; border-radius:50%;
+    background:var(--copper);
+    box-shadow:0 0 10px 3px rgba(201,134,63,0.7);
+  }
+  .case-logo{
+    position:absolute; top:16%; left:50%; transform:translateX(-50%);
+    font-family:'Big Shoulders Display'; font-weight:800; font-size:13px;
+    color:rgba(236,232,224,0.35); letter-spacing:0.1em;
+  }
+  .bud{
+    position:absolute; width:46px; height:58px; border-radius:18px 18px 22px 22px;
+    background:linear-gradient(150deg, #38383b, #121214 60%);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,0.25), 0 10px 18px rgba(0,0,0,0.5);
+  }
+  .bud:before{
+    content:''; position:absolute; top:10px; left:50%; transform:translateX(-50%);
+    width:24px; height:24px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #57575c, #0a0a0b 75%);
+  }
+  .bud.l{ left:-30px; top:40px; transform:rotate(-8deg); }
+  .bud.r{ right:-30px; top:40px; transform:rotate(8deg); }
+
+  .pbank{
+    position:absolute; right:-60px; bottom:30px; width:108px; height:206px;
+    transform:perspective(900px) rotateY(12deg) rotateX(2deg);
+    border-radius:16px;
+    background:linear-gradient(120deg, #2e2e31, #131315 55%, #232326);
+    box-shadow:
+      inset 0 1px 1px rgba(255,255,255,0.16),
+      inset 0 -20px 40px rgba(0,0,0,0.55),
+      0 35px 60px rgba(0,0,0,0.6);
+  }
+  .pbank-strip{
+    position:absolute; left:14%; right:14%; top:14%; bottom:14%;
+    border-radius:6px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.05), transparent 30%);
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .pbank-port{
+    position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
+    width:26px; height:6px; border-radius:2px; background:#050506;
+    box-shadow:inset 0 1px 2px rgba(0,0,0,0.8);
+  }
+  .pbank-gauge{
+    position:absolute; top:10%; left:50%; transform:translateX(-50%);
+    display:flex; gap:3px;
+  }
+  .pbank-gauge i{
+    width:5px; height:11px; background:var(--copper); opacity:0.85; border-radius:1px;
+  }
+  .pbank-gauge i:nth-child(4){opacity:0.25;}
+
+  .glow-link{
+    position:absolute; left:42%; top:46%; width:130px; height:2px;
+    background:linear-gradient(90deg, rgba(201,134,63,0.0), rgba(201,134,63,0.85), rgba(201,134,63,0.0));
+    filter:blur(0.5px);
+    animation:pulseLink 3.2s ease-in-out infinite;
+  }
+  @keyframes pulseLink{
+    0%,100%{opacity:0.15;}
+    50%{opacity:0.9;}
+  }
+
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .stage{height:380px; transform:scale(0.82);}
+    .navlinks{display:none;}
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    border-bottom:1px solid var(--line); border-top:1px solid var(--line);
+    background:var(--noir-1);
+    overflow:hidden; white-space:nowrap; padding:16px 0;
+  }
+  .marquee-track{display:inline-block; animation:scroll 26s linear infinite;}
+  .marquee span{
+    font-family:'Big Shoulders Display'; font-weight:700; font-size:15px;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--ivory-dim);
+    margin:0 26px;
+  }
+  .marquee span.dot{color:var(--copper);}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:120px 0; position:relative;}
+  .section-head{max-width:640px; margin-bottom:64px;}
+  .section-head h2{font-size:clamp(34px,4.4vw,56px); margin-top:10px;}
+  .section-head p{color:var(--ivory-dim); font-size:16px; line-height:1.7; margin-top:18px; max-width:520px;}
+
+  /* ---------- FEATURE: EARBUDS ---------- */
+  .feature{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;
+  }
+  .feature.reverse{grid-template-columns:1.1fr 0.9fr;}
+  .feature.reverse .feature-visual{order:2;}
+  .feature-visual{
+    position:relative; height:420px; border-radius:6px;
+    background:linear-gradient(160deg, var(--noir-2), var(--noir-0));
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .feature-visual:before{
+    content:''; position:absolute; width:280px; height:280px; border-radius:50%;
+    background:radial-gradient(circle, rgba(201,134,63,0.14), transparent 70%);
+  }
+  .feature-list{margin-top:30px; display:flex; flex-direction:column; gap:22px;}
+  .feature-list li{
+    list-style:none; display:flex; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--line);
+  }
+  .feature-list li:last-child{border-bottom:none;}
+  .fl-num{font-family:'Big Shoulders Display'; font-size:22px; color:var(--copper); font-weight:700; width:34px; flex-shrink:0;}
+  .fl-text b{display:block; font-size:15px; margin-bottom:4px;}
+  .fl-text span{font-size:14px; color:var(--ivory-dim); line-height:1.6;}
+
+  .earbud-big{
+    position:relative; width:120px; height:150px; border-radius:46px 46px 56px 56px;
+    background:linear-gradient(150deg, #3a3a3e, #0d0d0e 65%);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,0.25), 0 30px 50px rgba(0,0,0,0.6);
+  }
+  .earbud-big:before{
+    content:''; position:absolute; top:18px; left:50%; transform:translateX(-50%);
+    width:64px; height:64px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #5e5e64, #0a0a0b 75%);
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,0.04);
+  }
+  .earbud-big:after{
+    content:''; position:absolute; top:38px; left:50%; transform:translateX(-50%);
+    width:10px; height:10px; border-radius:50%; background:var(--copper);
+    box-shadow:0 0 10px 3px rgba(201,134,63,0.6);
+  }
+
+  .bank-big{
+    position:relative; width:150px; height:280px; border-radius:22px;
+    background:linear-gradient(125deg, #343437, #111113 55%, #2a2a2d);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,0.18), 0 35px 60px rgba(0,0,0,0.6);
+  }
+  .bank-big .bb-screen{
+    position:absolute; top:14%; left:50%; transform:translateX(-50%);
+    width:60%; height:80px; border-radius:8px; background:#070708;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .bb-pct{font-family:'Big Shoulders Display'; color:var(--copper); font-size:22px; font-weight:700;}
+  .bb-bars{display:flex; gap:3px;}
+  .bb-bars i{width:5px; height:10px; background:rgba(236,232,224,0.18); border-radius:1px;}
+  .bb-bars i.on{background:var(--copper);}
+  .bank-big .bb-port{
+    position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
+    width:34px; height:8px; border-radius:3px; background:#050506; box-shadow:inset 0 1px 2px #000;
+  }
+
+  /* ---------- SPECS ---------- */
+  .specs-table{width:100%; border-collapse:collapse; margin-top:10px;}
+  .specs-table tr{border-bottom:1px solid var(--line);}
+  .specs-table tr:first-child{border-top:1px solid var(--line);}
+  .specs-table td{padding:18px 10px; font-size:14px;}
+  .specs-table td:first-child{color:var(--ivory-dim); width:36%;}
+  .specs-table td:last-child{text-align:right; font-weight:500;}
+  .specs-cols{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .specs-cols h4{font-family:'Big Shoulders Display'; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--copper); margin-bottom:6px;}
+
+  /* ---------- QUOTE / CINEMATIC BAND ---------- */
+  .cinebar{
+    background:
+      linear-gradient(rgba(10,10,11,0.7), rgba(10,10,11,0.85)),
+      repeating-linear-gradient(100deg, rgba(201,134,63,0.05) 0px, rgba(201,134,63,0.05) 2px, transparent 2px, transparent 60px);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:140px 0;
+    text-align:center;
+  }
+  .cinebar blockquote{
+    font-family:'Big Shoulders Display'; font-weight:700;
+    font-size:clamp(28px,4vw,48px); max-width:880px; margin:0 auto; line-height:1.15;
+    text-transform:none;
+  }
+  .cinebar cite{
+    display:block; margin-top:26px; font-size:13px; letter-spacing:0.06em; color:var(--ivory-dim); font-style:normal;
+  }
+
+  /* ---------- BUNDLE / PRICING ---------- */
+  .bundle{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;
+  }
+  .plan{
+    border:1px solid var(--line); border-radius:6px; padding:36px 28px;
+    background:var(--noir-1);
+    display:flex; flex-direction:column;
+    transition:border-color 0.25s, transform 0.25s;
+  }
+  .plan:hover{transform:translateY(-6px); border-color:rgba(201,134,63,0.4);}
+  .plan.featured{border-color:var(--copper); background:linear-gradient(160deg, var(--noir-2), var(--noir-1));}
+  .plan h3{font-family:'Big Shoulders Display'; font-size:24px; margin-bottom:6px;}
+  .plan .price{font-size:34px; font-weight:600; margin:18px 0 22px 0;}
+  .plan .price small{font-size:14px; color:var(--ivory-dim); font-weight:400;}
+  .plan ul{list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:30px; flex-grow:1;}
+  .plan li{font-size:14px; color:var(--ivory-dim); display:flex; gap:10px;}
+  .plan li:before{content:'—'; color:var(--copper);}
+  .plan a{
+    text-align:center; padding:13px; border-radius:2px; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; font-weight:600;
+    border:1px solid var(--line);
+  }
+  .plan.featured a{background:var(--copper); border-color:var(--copper); color:var(--noir-0);}
+  .plan-tag{
+    align-self:flex-start; background:var(--copper); color:var(--noir-0); font-size:10px;
+    letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:14px; font-weight:700;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    padding:24px 0; display:flex; justify-content:space-between; align-items:center;
+    cursor:pointer; font-size:16px; font-weight:500;
+  }
+  .faq-q .icon{color:var(--copper); font-size:20px; transition:transform 0.3s; font-family:'Big Shoulders Display';}
+  .faq-item.open .faq-q .icon{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.35s ease;
+    color:var(--ivory-dim); font-size:14.5px; line-height:1.7;
+  }
+  .faq-item.open .faq-a{max-height:200px; padding-bottom:24px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line); padding:70px 0 36px;}
+  .foot-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px; margin-bottom:60px;}
+  .foot-cols{display:flex; gap:70px;}
+  .foot-cols h5{font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--copper); margin-bottom:16px;}
+  .foot-cols a{display:block; font-size:14px; color:var(--ivory-dim); margin-bottom:10px; transition:color 0.2s;}
+  .foot-cols a:hover{color:var(--ivory);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    padding-top:24px; border-top:1px solid var(--line);
+    font-size:12px; color:var(--ivory-dim);
+  }
+
+  ::selection{background:var(--copper); color:var(--noir-0);}
+  *:focus-visible{outline:2px solid var(--copper); outline-offset:2px;}
+
+  @media (max-width:880px){
+    .feature, .feature.reverse{grid-template-columns:1fr;}
+    .feature.reverse .feature-visual{order:0;}
+    .bundle{grid-template-columns:1fr;}
+    .specs-cols{grid-template-columns:1fr;}
+    section{padding:80px 0;}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef } = React;
+
+function NavBar(){
+  return (
+    <nav>
+      <a className="logo" href="#top">NOIR<span>.</span></a>
+      <div className="navlinks">
+        <a href="#earbuds">Earbuds</a>
+        <a href="#power">Power Bank</a>
+        <a href="#specs">Specs</a>
+        <a href="#bundle">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a className="navcta" href="#bundle">Get the Kit</a>
+    </nav>
+  );
+}
+
+function Hero(){
+  return (
+    <header className="hero" id="top">
+      <div className="hero-grain"></div>
+      <div className="wrap hero-grid">
+        <div>
+          <div className="eyebrow">NOIR KIT ONE — AUDIO &amp; POWER, ENGINEERED TOGETHER</div>
+          <h1 className="display">Sound that<br/>doesn't<br/><span className="accent">run out.</span></h1>
+          <p className="lede">Studio-tuned earbuds paired with a pocket power bank built to outlast the day — matte-finished, hand-assembled, made for people who never stop moving.</p>
+          <div className="hero-ctas">
+            <a className="btn-primary" href="#bundle">Shop the Kit — $149</a>
+            <a className="btn-ghost" href="#earbuds">See it in motion ↓</a>
+          </div>
+          <div className="hero-meta">
+            <div><b>38h</b><span>Total playback w/ bank</span></div>
+            <div><b>10,000mAh</b><span>Power bank capacity</span></div>
+            <div><b>IPX5</b><span>Sweat &amp; splash rated</span></div>
+          </div>
+        </div>
+        <div className="stage">
+          <div className="stage-floor"></div>
+          <div className="case3d">
+            <div className="case-body">
+              <div className="case-seam"></div>
+              <div className="case-logo">NOIR</div>
+              <div className="case-led"></div>
+            </div>
+            <div className="bud l"></div>
+            <div className="bud r"></div>
+          </div>
+          <div className="glow-link"></div>
+          <div className="pbank">
+            <div className="pbank-strip"></div>
+            <div className="pbank-gauge"><i></i><i></i><i></i><i></i></div>
+            <div className="pbank-port"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function Marquee(){
+  const items = ["ACTIVE NOISE CANCELLING","10,000mAh PASS-THROUGH CHARGING","IPX5 SWEAT RESISTANT","38H TOTAL PLAYBACK","USB-C 20W FAST CHARGE","BLUETOOTH 5.3"];
+  const row = items.map((t,i)=> <span key={i}>{t} <span className="dot">●</span></span>);
+  return (
+    <div className="marquee">
+      <div className="marquee-track">{row}{row}</div>
+    </div>
+  );
+}
+
+function FeatureEarbuds(){
+  return (
+    <section id="earbuds">
+      <div className="wrap feature">
+        <div className="feature-visual">
+          <div className="earbud-big"></div>
+        </div>
+        <div>
+          <div className="eyebrow">01 — IN YOUR EAR</div>
+          <h2 className="display">Tuned in a room built for listening.</h2>
+          <p style={{color:'var(--ivory-dim)', fontSize:'15px', lineHeight:1.7, marginTop:'14px', maxWidth:'460px'}}>
+            Every NOIR driver is tested in an anechoic chamber before it ships. The result is a warm low end, a vocal range that doesn't get buried, and noise cancelling that knows the difference between a subway and your own breathing.
+          </p>
+          <ul className="feature-list">
+            <li><span className="fl-num">01</span><span className="fl-text"><b>11mm titanium-coated driver</b><span>Wide dynamic range without distortion at high volume.</span></span></li>
+            <li><span className="fl-num">02</span><span className="fl-text"><b>Adaptive ANC, 32dB reduction</b><span>Recalibrates every 12 seconds to your environment.</span></span></li>
+            <li><span className="fl-num">03</span><span className="fl-text"><b>7h per charge, 38h with case</b><span>A full work week on one charge of the case alone.</span></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturePower(){
+  return (
+    <section id="power">
+      <div className="wrap feature reverse">
+        <div>
+          <div className="eyebrow">02 — IN YOUR POCKET</div>
+          <h2 className="display">The bank that never makes you choose.</h2>
+          <p style={{color:'var(--ivory-dim)', fontSize:'15px', lineHeight:1.7, marginTop:'14px', maxWidth:'460px'}}>
+            10,000mAh in a body the size of a deck of cards. Charge your earbud case, your phone, or both — the bank reads what's plugged in and splits power accordingly, with a live percentage readout so you're never guessing.
+          </p>
+          <ul className="feature-list">
+            <li><span className="fl-num">01</span><span className="fl-text"><b>20W USB-C fast charge</b><span>0–50% on your phone in under 25 minutes.</span></span></li>
+            <li><span className="fl-num">02</span><span className="fl-text"><b>Pass-through charging</b><span>Charge the bank and your devices at the same time.</span></span></li>
+            <li><span className="fl-num">03</span><span className="fl-text"><b>Aircraft-grade aluminum shell</b><span>Drop-tested from 1.2m onto concrete.</span></span></li>
+          </ul>
+        </div>
+        <div className="feature-visual">
+          <div className="bank-big">
+            <div className="bb-screen">
+              <div className="bb-pct">78%</div>
+              <div className="bb-bars"><i className="on"></i><i className="on"></i><i className="on"></i><i></i></div>
+            </div>
+            <div className="bb-port"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Specs(){
+  return (
+    <section id="specs">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="eyebrow">03 — THE NUMBERS</div>
+          <h2 className="display">Specifications, in full.</h2>
+        </div>
+        <div className="specs-cols">
+          <div>
+            <h4>Earbuds</h4>
+            <table className="specs-table">
+              <tbody>
+                <tr><td>Driver size</td><td>11mm titanium-coated</td></tr>
+                <tr><td>Noise cancelling</td><td>Adaptive, up to 32dB</td></tr>
+                <tr><td>Battery (buds / case)</td><td>7h / 38h combined</td></tr>
+                <tr><td>Bluetooth</td><td>5.3, multipoint</td></tr>
+                <tr><td>Water resistance</td><td>IPX5</td></tr>
+                <tr><td>Weight (pair)</td><td>4.8g each</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h4>Power Bank</h4>
+            <table className="specs-table">
+              <tbody>
+                <tr><td>Capacity</td><td>10,000mAh / 36Wh</td></tr>
+                <tr><td>Output</td><td>USB-C PD, 20W max</td></tr>
+                <tr><td>Charge time (bank)</td><td>1h 45m via 20W</td></tr>
+                <tr><td>Shell</td><td>Aircraft-grade aluminum</td></tr>
+                <tr><td>Display</td><td>4-segment LED percentage</td></tr>
+                <tr><td>Weight</td><td>198g</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CineBand(){
+  return (
+    <div className="cinebar">
+      <div className="wrap">
+        <blockquote>
+          "It's the first power bank I've owned<br/>that I actually reach for first."
+        </blockquote>
+        <cite>— DANI OKAFOR, FIELD AUDIO ENGINEER, 2 YEARS WITH NOIR</cite>
+      </div>
+    </div>
+  );
+}
+
+function Bundle(){
+  return (
+    <section id="bundle">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="eyebrow">04 — CHOOSE YOUR KIT</div>
+          <h2 className="display">One price. No hidden charge.</h2>
+          <p>Every kit ships with a USB-C cable, a fabric carry pouch, and a 2-year warranty on the bank's battery cycle.</p>
+        </div>
+        <div className="bundle">
+          <div className="plan">
+            <h3>Earbuds Only</h3>
+            <div className="price">$89</div>
+            <ul>
+              <li>NOIR earbuds + charging case</li>
+              <li>Adaptive ANC</li>
+              <li>38h total playback</li>
+              <li>1-year warranty</li>
+            </ul>
+            <a href="#">Add to cart</a>
+          </div>
+          <div className="plan featured">
+            <span className="plan-tag">Most chosen</span>
+            <h3>NOIR Kit One</h3>
+            <div className="price">$149 <small>save $19</small></div>
+            <ul>
+              <li>NOIR earbuds + charging case</li>
+              <li>10,000mAh power bank</li>
+              <li>Fabric travel pouch</li>
+              <li>2-year warranty</li>
+            </ul>
+            <a href="#">Add to cart</a>
+          </div>
+          <div className="plan">
+            <h3>Power Bank Only</h3>
+            <div className="price">$59</div>
+            <ul>
+              <li>10,000mAh capacity</li>
+              <li>20W pass-through charging</li>
+              <li>Aluminum shell</li>
+              <li>1-year warranty</li>
+            </ul>
+            <a href="#">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ(){
+  const data = [
+    {q:"Do the earbuds charge from the power bank case, or from the bank itself?", a:"Both. Dock the earbud case on the power bank's pass-through port to top it up on the move, or place it on its own USB-C cable independently."},
+    {q:"How long does the full kit last between charges?", a:"The earbuds alone run 7 hours. The case carries 4 more full charges (38h total). The power bank adds roughly 2 additional full case charges on top of that."},
+    {q:"Is it safe to run the bank and a phone off the same cable?", a:"Yes — pass-through charging is built in, so the bank can charge a connected device while it's itself being charged, without degrading either battery."},
+    {q:"What's covered under warranty?", a:"The earbuds carry a 1-year defect warranty. The power bank's battery cycle is covered for 2 years from date of purchase, covering capacity drop below 80%."}
+  ];
+  const [open, setOpen] = useState(0);
+  return (
+    <section id="faq">
+      <div className="wrap" style={{maxWidth:'760px'}}>
+        <div className="section-head">
+          <div className="eyebrow">05 — QUESTIONS</div>
+          <h2 className="display">Before you order.</h2>
+        </div>
+        {data.map((item,i)=>(
+          <div className={"faq-item" + (open===i ? " open":"")} key={i}>
+            <div className="faq-q" onClick={()=>setOpen(open===i?-1:i)}>
+              <span>{item.q}</span>
+              <span className="icon">+</span>
+            </div>
+            <div className="faq-a">{item.a}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Footer(){
+  return (
+    <footer>
+      <div className="wrap">
+        <div className="foot-top">
+          <div>
+            <a className="logo" href="#top">NOIR<span>.</span></a>
+            <p style={{color:'var(--ivory-dim)', fontSize:'13px', marginTop:'14px', maxWidth:'260px', lineHeight:1.6}}>Sound and power, engineered together. Designed in-house, assembled in small batches.</p>
+          </div>
+          <div className="foot-cols">
+            <div>
+              <h5>Product</h5>
+              <a href="#earbuds">Earbuds</a>
+              <a href="#power">Power Bank</a>
+              <a href="#bundle">Pricing</a>
+            </div>
+            <div>
+              <h5>Support</h5>
+              <a href="#faq">FAQ</a>
+              <a href="#">Warranty</a>
+              <a href="#">Contact</a>
+            </div>
+            <div>
+              <h5>Company</h5>
+              <a href="#">About</a>
+              <a href="#">Journal</a>
+            </div>
+          </div>
+        </div>
+        <div className="foot-bottom">
+          <span>© 2026 NOIR Audio. All rights reserved.</span>
+          <span>Privacy — Terms — Shipping</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function App(){
+  return (
+    <React.Fragment>
+      <NavBar/>
+      <Hero/>
+      <Marquee/>
+      <FeatureEarbuds/>
+      <FeaturePower/>
+      <Specs/>
+      <CineBand/>
+      <Bundle/>
+      <FAQ/>
+      <Footer/>
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
