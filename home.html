@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NOIR — Sound. Power. Carried.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600&family=Inter:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="home.html">NOIR<span>.</span></a>
+  <div class="nav-right">
+    <button class="menu-btn" id="menuOpenBtn" aria-expanded="false" aria-label="Open menu">
+      <span class="burger"><span></span><span></span><span></span></span>
+      Menu
+    </button>
+    <a class="navcta" href="#bundle">Get the Kit</a>
+  </div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="menu-curtain"></div>
+  <div class="menu-overlay-grain"></div>
+  <button class="menu-close" id="menuCloseBtn" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="4" y1="4" x2="20" y2="20"/>
+      <line x1="20" y1="4" x2="4" y2="20"/>
+    </svg>
+  </button>
+  <div class="menu-inner">
+    <ul class="menu-list">
+      <li><a href="home.html" class="menu-link"><span class="mnum">01</span><span class="mtitle">Home</span></a></li>
+      <li><a href="#about" class="menu-link"><span class="mnum">02</span><span class="mtitle">About</span></a></li>
+      <li><a href="contact.html" class="menu-link"><span class="mnum">03</span><span class="mtitle">Contact</span></a></li>
+    </ul>
+    <div class="menu-foot">
+      <div>
+        <div class="eyebrow">NOIR AUDIO</div>
+        <span style="font-size:13px; color:var(--ivory-dim);">Designed in-house. Assembled in small batches.</span>
+      </div>
+      <div class="menu-foot-links">
+        <a href="mailto:hello@noiraudio.co">hello@noiraudio.co</a>
+        <a href="#bundle" class="menu-link">Shop</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-grain"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">NOIR KIT ONE — AUDIO &amp; POWER, ENGINEERED TOGETHER</div>
+      <h1 class="display">Sound that<br/>doesn't<br/><span class="accent">run out.</span></h1>
+      <p class="lede">Studio-tuned earbuds paired with a pocket power bank built to outlast the day — matte-finished, hand-assembled, made for people who never stop moving.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#bundle">Shop the Kit — $149</a>
+        <a class="btn-ghost" href="#earbuds">See it in motion ↓</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>38h</b><span>Total playback w/ bank</span></div>
+        <div><b>10,000mAh</b><span>Power bank capacity</span></div>
+        <div><b>IPX5</b><span>Sweat &amp; splash rated</span></div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-floor"></div>
+      <div class="case3d">
+        <div class="case-body">
+          <div class="case-seam"></div>
+          <div class="case-logo">NOIR</div>
+          <div class="case-led"></div>
+        </div>
+        <div class="bud l"></div>
+        <div class="bud r"></div>
+      </div>
+      <div class="glow-link"></div>
+      <div class="pbank">
+        <div class="pbank-strip"></div>
+        <div class="pbank-gauge"><i></i><i></i><i></i><i></i></div>
+        <div class="pbank-port"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">ABOUT NOIR</div>
+      <h2 class="display" style="font-size:clamp(34px,4.4vw,56px); margin-top:10px;">Built by people who couldn't find what they wanted to buy.</h2>
+      <p style="color:var(--ivory-dim); font-size:16px; line-height:1.7; margin-top:18px; max-width:480px;">
+        NOIR started in 2022 as a side bench of two audio engineers tired of choosing between sound quality and battery anxiety. We design and tune every driver ourselves, then build the power system around it — not the other way around.
+      </p>
+      <div class="about-stats">
+        <div><b>2022</b><span>Founded</span></div>
+        <div><b>40k+</b><span>Kits shipped</span></div>
+        <div><b>11</b><span>People, total</span></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-reel">
+        <span class="yr y1">2022</span>
+        <span class="yr y2">2024</span>
+        <span class="yr y3">2026</span>
+        <span class="dot d1"></span>
+        <span class="dot d2"></span>
+        <span class="dot d3"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="earbuds">
+  <div class="wrap feature">
+    <div class="feature-visual">
+      <div class="earbud-big"></div>
+    </div>
+    <div>
+      <div class="eyebrow">01 — IN YOUR EAR</div>
+      <h2 class="display">Tuned in a room built for listening.</h2>
+      <p style="color:var(--ivory-dim); font-size:15px; line-height:1.7; margin-top:14px; max-width:460px;">
+        Every NOIR driver is tested in an anechoic chamber before it ships. The result is a warm low end, a vocal range that doesn't get buried, and noise cancelling that knows the difference between a subway and your own breathing.
+      </p>
+      <ul class="feature-list">
+        <li><span class="fl-num">01</span><span class="fl-text"><b>11mm titanium-coated driver</b><span>Wide dynamic range without distortion at high volume.</span></span></li>
+        <li><span class="fl-num">02</span><span class="fl-text"><b>Adaptive ANC, 32dB reduction</b><span>Recalibrates every 12 seconds to your environment.</span></span></li>
+        <li><span class="fl-num">03</span><span class="fl-text"><b>7h per charge, 38h with case</b><span>A full work week on one charge of the case alone.</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="power">
+  <div class="wrap feature reverse">
+    <div>
+      <div class="eyebrow">02 — IN YOUR POCKET</div>
+      <h2 class="display">The bank that never makes you choose.</h2>
+      <p style="color:var(--ivory-dim); font-size:15px; line-height:1.7; margin-top:14px; max-width:460px;">
+        10,000mAh in a body the size of a deck of cards. Charge your earbud case, your phone, or both — the bank reads what's plugged in and splits power accordingly, with a live percentage readout so you're never guessing.
+      </p>
+      <ul class="feature-list">
+        <li><span class="fl-num">01</span><span class="fl-text"><b>20W USB-C fast charge</b><span>0–50% on your phone in under 25 minutes.</span></span></li>
+        <li><span class="fl-num">02</span><span class="fl-text"><b>Pass-through charging</b><span>Charge the bank and your devices at the same time.</span></span></li>
+        <li><span class="fl-num">03</span><span class="fl-text"><b>Aircraft-grade aluminum shell</b><span>Drop-tested from 1.2m onto concrete.</span></span></li>
+      </ul>
+    </div>
+    <div class="feature-visual">
+      <div class="bank-big">
+        <div class="bb-screen">
+          <div class="bb-pct">78%</div>
+          <div class="bb-bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+        </div>
+        <div class="bb-port"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="specs">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">03 — THE NUMBERS</div>
+      <h2 class="display">Specifications, in full.</h2>
+    </div>
+    <div class="specs-cols">
+      <div>
+        <h4>Earbuds</h4>
+        <table class="specs-table">
+          <tbody>
+            <tr><td>Driver size</td><td>11mm titanium-coated</td></tr>
+            <tr><td>Noise cancelling</td><td>Adaptive, up to 32dB</td></tr>
+            <tr><td>Battery (buds / case)</td><td>7h / 38h combined</td></tr>
+            <tr><td>Bluetooth</td><td>5.3, multipoint</td></tr>
+            <tr><td>Water resistance</td><td>IPX5</td></tr>
+            <tr><td>Weight (pair)</td><td>4.8g each</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Power Bank</h4>
+        <table class="specs-table">
+          <tbody>
+            <tr><td>Capacity</td><td>10,000mAh / 36Wh</td></tr>
+            <tr><td>Output</td><td>USB-C PD, 20W max</td></tr>
+            <tr><td>Charge time (bank)</td><td>1h 45m via 20W</td></tr>
+            <tr><td>Shell</td><td>Aircraft-grade aluminum</td></tr>
+            <tr><td>Display</td><td>4-segment LED percentage</td></tr>
+            <tr><td>Weight</td><td>198g</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cinebar">
+  <div class="wrap">
+    <blockquote>
+      "It's the first power bank I've owned<br/>that I actually reach for first."
+    </blockquote>
+    <cite>— DANI OKAFOR, FIELD AUDIO ENGINEER, 2 YEARS WITH NOIR</cite>
+  </div>
+</div>
+
+<section id="bundle">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">04 — CHOOSE YOUR KIT</div>
+      <h2 class="display">One price. No hidden charge.</h2>
+      <p>Every kit ships with a USB-C cable, a fabric carry pouch, and a 2-year warranty on the bank's battery cycle.</p>
+    </div>
+    <div class="bundle">
+      <div class="plan">
+        <h3>Earbuds Only</h3>
+        <div class="price">$89</div>
+        <ul>
+          <li>NOIR earbuds + charging case</li>
+          <li>Adaptive ANC</li>
+          <li>38h total playback</li>
+          <li>1-year warranty</li>
+        </ul>
+        <a href="#">Add to cart</a>
+      </div>
+      <div class="plan featured">
+        <span class="plan-tag">Most chosen</span>
+        <h3>NOIR Kit One</h3>
+        <div class="price">$149 <small>save $19</small></div>
+        <ul>
+          <li>NOIR earbuds + charging case</li>
+          <li>10,000mAh power bank</li>
+          <li>Fabric travel pouch</li>
+          <li>2-year warranty</li>
+        </ul>
+        <a href="#">Add to cart</a>
+      </div>
+      <div class="plan">
+        <h3>Power Bank Only</h3>
+        <div class="price">$59</div>
+        <ul>
+          <li>10,000mAh capacity</li>
+          <li>20W pass-through charging</li>
+          <li>Aluminum shell</li>
+          <li>1-year warranty</li>
+        </ul>
+        <a href="#">Add to cart</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head">
+      <div class="eyebrow">05 — QUESTIONS</div>
+      <h2 class="display">Before you order.</h2>
+    </div>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="logo" href="home.html">NOIR<span>.</span></a>
+        <p style="color:var(--ivory-dim); font-size:13px; margin-top:14px; max-width:260px; line-height:1.6;">Sound and power, engineered together. Designed in-house, assembled in small batches.</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h5>Product</h5>
+          <a href="#earbuds">Earbuds</a>
+          <a href="#power">Power Bank</a>
+          <a href="#bundle">Pricing</a>
+        </div>
+        <div>
+          <h5>Support</h5>
+          <a href="#faq">FAQ</a>
+          <a href="#">Warranty</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <a href="#about">About</a>
+          <a href="#">Journal</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 NOIR Audio. All rights reserved.</span>
+      <span>Privacy — Terms — Shipping</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

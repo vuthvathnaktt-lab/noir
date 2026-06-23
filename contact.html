@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — NOIR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600&family=Inter:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="home.html">NOIR<span>.</span></a>
+  <div class="nav-right">
+    <button class="menu-btn" id="menuOpenBtn" aria-expanded="false" aria-label="Open menu">
+      <span class="burger"><span></span><span></span><span></span></span>
+      Menu
+    </button>
+    <a class="navcta" href="home.html#bundle">Get the Kit</a>
+  </div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="menu-curtain"></div>
+  <div class="menu-overlay-grain"></div>
+  <button class="menu-close" id="menuCloseBtn" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="4" y1="4" x2="20" y2="20"/>
+      <line x1="20" y1="4" x2="4" y2="20"/>
+    </svg>
+  </button>
+  <div class="menu-inner">
+    <ul class="menu-list">
+      <li><a href="home.html" class="menu-link"><span class="mnum">01</span><span class="mtitle">Home</span></a></li>
+      <li><a href="home.html#about" class="menu-link"><span class="mnum">02</span><span class="mtitle">About</span></a></li>
+      <li><a href="contact.html" class="menu-link"><span class="mnum">03</span><span class="mtitle">Contact</span></a></li>
+    </ul>
+    <div class="menu-foot">
+      <div>
+        <div class="eyebrow">NOIR AUDIO</div>
+        <span style="font-size:13px; color:var(--ivory-dim);">Designed in-house. Assembled in small batches.</span>
+      </div>
+      <div class="menu-foot-links">
+        <a href="mailto:hello@noiraudio.co">hello@noiraudio.co</a>
+        <a href="home.html#bundle" class="menu-link">Shop</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <div>
+        <div class="eyebrow">GET IN TOUCH</div>
+        <h2 class="display">Talk to a<br/>human, not<br/>a queue.</h2>
+      </div>
+      <div class="contact-line">
+        <span class="label">Email</span>
+        <a href="mailto:hello@noiraudio.co">hello@noiraudio.co</a>
+      </div>
+      <div class="contact-line">
+        <span class="label">Support</span>
+        <a href="mailto:support@noiraudio.co">support@noiraudio.co</a>
+      </div>
+      <div class="contact-line">
+        <span class="label">Studio</span>
+        <span class="value">Brooklyn, NY — by appointment</span>
+      </div>
+      <div class="contact-line">
+        <span class="label">Response time</span>
+        <span class="value">Within 1 business day</span>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <div class="field">
+        <input id="c-name" type="text" placeholder=" " required>
+        <label for="c-name">Your name</label>
+        <span class="underline-glow"></span>
+      </div>
+      <div class="field">
+        <input id="c-email" type="email" placeholder=" " required>
+        <label for="c-email">Email address</label>
+        <span class="underline-glow"></span>
+      </div>
+      <div class="field">
+        <textarea id="c-message" placeholder=" " required></textarea>
+        <label for="c-message">What's on your mind?</label>
+        <span class="underline-glow"></span>
+      </div>
+      <button type="submit" class="contact-submit" id="contactSubmitBtn">Send message</button>
+      <div class="contact-sent-msg" id="contactSentMsg">Thanks — we'll get back to you within 1 business day.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="logo" href="home.html">NOIR<span>.</span></a>
+        <p style="color:var(--ivory-dim); font-size:13px; margin-top:14px; max-width:260px; line-height:1.6;">Sound and power, engineered together. Designed in-house, assembled in small batches.</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h5>Product</h5>
+          <a href="home.html#earbuds">Earbuds</a>
+          <a href="home.html#power">Power Bank</a>
+          <a href="home.html#bundle">Pricing</a>
+        </div>
+        <div>
+          <h5>Support</h5>
+          <a href="home.html#faq">FAQ</a>
+          <a href="#">Warranty</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <a href="home.html#about">About</a>
+          <a href="#">Journal</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 NOIR Audio. All rights reserved.</span>
+      <span>Privacy — Terms — Shipping</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
